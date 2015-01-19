@@ -7,6 +7,11 @@ import java.util.Random;
  * Date: 1-17-15
  * "I pledge that I have acted honorably" - Haider Khan
  * CSC 202 - Data Structures 
+ * 
+ * Purpose: To create an example object which has a name and a count
+ * 			an output method which outputs the name in the system print
+ * 			window and getter and setter methods along with a comparable
+ * 			method.
  */
 
 
