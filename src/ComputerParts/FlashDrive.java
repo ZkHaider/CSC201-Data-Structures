@@ -1,17 +1,14 @@
 package ComputerParts;
 
-public class FlashDrive {
+public class FlashDrive extends ComputerPart {
 	
-	private int capacity;
-	private double latency;
-	private String description;
 	private int isInternalOrExternal;
 	
 	public FlashDrive(int capacity, double latency, int isInternalOrExternal) {
 		this.isInternalOrExternal = isInternalOrExternal;
 		this.capacity = capacity;
 		this.latency = latency;
-		description = "This is a FlashDrive Object, it's capacity is " +
+		this.description = "This is a FlashDrive Object, it's capacity is " +
 					capacity + ", its latency is " + latency + " and its description is " +
 					description;
 		

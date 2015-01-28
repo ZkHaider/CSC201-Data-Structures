@@ -1,15 +1,11 @@
 package ComputerParts;
 
-public class GraphicsCard {
-
-	private int capacity;
-	private double latency;
-	private String description;
+public class GraphicsCard extends ComputerPart {
 	
 	public GraphicsCard(int capacity, double latency) {
 		this.capacity = capacity;
 		this.latency = latency;
-		description = "This is a GraphicsCard Object, it's capacity is " +
+		this.description = "This is a GraphicsCard Object, it's capacity is " +
 					capacity + ", its latency is " + latency + " and its description is " +
 					description;
 		
