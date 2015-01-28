@@ -8,18 +8,15 @@ package ComputerParts;
  * 				a latency value, current position and the description"
  */
 
-public class TapeDrive {
+public class TapeDrive extends ComputerPart {
 	
-	private int capacity; 
-	private double latency;
 	private int position;
-	private String description;
 	
 	public TapeDrive(int capacity, double latency, int position) {
 		this.capacity = capacity;
 		this.latency = latency;
 		this.position = position;
-		description = "The capacity of the tape drive is "  + capacity +
+		this.description = "The capacity of the tape drive is "  + capacity +
 					  ", the latency is "  + latency + " and the position is"
 					  + position;
 	}
