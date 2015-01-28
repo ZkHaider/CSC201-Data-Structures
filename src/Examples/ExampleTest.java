@@ -10,6 +10,8 @@ import java.util.Arrays;
  * Purpose: To setup an ExampleTest object that will setup a example array
  * 			In this class you can add an example object, copy the array, and
  * 			Sort the examples array with comparable and selection sort.
+
+ *  ARRAYLIST is sometimes called Syntactic Sugar
  */
 
 public class ExampleTest {
