@@ -28,6 +28,7 @@ public class FlashDrive {
 	public void setIsInternalOrExternal(int isInternalOrExternal) {
 		this.isInternalOrExternal = isInternalOrExternal;
 	}
+
 	
 	public int getCapacity() {
 		return capacity;
