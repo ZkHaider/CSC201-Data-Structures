@@ -1,13 +1,21 @@
 package ComputerParts;
 
-public class Case {
-	
-	private double cost;
-	private String description;
+/*
+ * Name: Haider Khan
+ * Date: 1/26/15
+ * Pledge: "I pledge that I have acted honorably" - Haider Khan
+ * Class: Data Structures
+ * Description: Case class with cost and description that tells you the
+ * 				cost of a specific part
+ * 
+ */
+
+public class Case extends ComputerPart {
 
 	public Case(double cost) {
+		super();
 		this.cost = cost;
-		description = "The cost for this case is " + cost;
+		this.description = "The cost for this case is " + cost;
 	}
 	
 	public String toString() {

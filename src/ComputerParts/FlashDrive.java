@@ -5,6 +5,7 @@ public class FlashDrive extends ComputerPart {
 	private int isInternalOrExternal;
 	
 	public FlashDrive(int capacity, double latency, int isInternalOrExternal) {
+		super();
 		this.isInternalOrExternal = isInternalOrExternal;
 		this.capacity = capacity;
 		this.latency = latency;

@@ -8,23 +8,19 @@ package ComputerParts;
  * Pledge: "I pledge that I have acted honorably" - Haider Khan
  */
 
-public class RAM {
-	
-	private double cost;
-	private int capacity;
-	private double latency;
-	private String stringValue;
+public class RAM extends ComputerPart {
 	
 	public RAM(int capacity, double latency) {
+		super();
 		this.capacity = capacity;
 		this.latency = latency;
-		stringValue = "The capacity of the RAM object is " + capacity 
+		this.description = "The capacity of the RAM object is " + capacity 
 					+ " , the latency is " + latency + " and the cost is " +
 					cost;
 	}
 	
 	public String toString() {
-		return stringValue;
+		return description;
 	}
 	
 	public int getCapacity() {

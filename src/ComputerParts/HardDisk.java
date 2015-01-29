@@ -1,22 +1,19 @@
 package ComputerParts;
 
-public class HardDisk {
-	
-	private int capacity;
-	private double latency;
-	private String description;
+public class HardDisk extends ComputerPart {
 	
 	public HardDisk(int capacity, double latency) {
+		super();
 		this.capacity = capacity;
 		this.latency = latency;
-		description = "This is a HardDisk Object, it's capacity is " +
+		this.description = "This is a HardDisk Object, it's capacity is " +
 					capacity + ", its latency is " + latency + " and its description is " +
 					description;
 		
 	}
 	
 	public String toString() {
-		return description;
+		return description;	
 	}
 	
 	public int getCapacity() {

@@ -1,11 +1,11 @@
 package ComputerParts;
 
-public class PartsNode {
+public class PartsNode<ComputerPart> {
 	
 	private ComputerPart computerPart;
-	private PartsNode next;
+	private PartsNode<ComputerPart> next;
 	
-	public PartsNode(ComputerPart computerPart, PartsNode next) {
+	public PartsNode(ComputerPart computerPart, PartsNode<ComputerPart> next) {
 		this.computerPart = computerPart;
 		this.next = next;
 	}
@@ -14,15 +14,15 @@ public class PartsNode {
 		return computerPart;
 	}
 	
-	public PartsNode getNextNode() {
-		return next;
-	}
-	
 	public void setComputerPart(ComputerPart computerPart) {
 		this.computerPart = computerPart;
 	}
 	
-	public void setNode(PartsNode next) {
+	public PartsNode<ComputerPart> getNextNode() {
+		return next;
+	}
+	
+	public void setNextNode(PartsNode<ComputerPart> next) {
 		this.next = next;
 	}
 
