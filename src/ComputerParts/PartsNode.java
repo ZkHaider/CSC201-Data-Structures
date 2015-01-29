@@ -5,9 +5,7 @@ public class PartsNode<ComputerPart> {
 	private ComputerPart computerPart;
 	private PartsNode<ComputerPart> next;
 	
-	public PartsNode(ComputerPart computerPart, PartsNode<ComputerPart> next) {
-		this.computerPart = computerPart;
-		this.next = next;
+	public PartsNode() {
 	}
 	
 	public ComputerPart getComputerPart() {
