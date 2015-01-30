@@ -1,5 +1,7 @@
 package ComputerParts;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 public class SortedPartsList {
 	
 	protected PartsNode<ComputerPart> head; // The very top of the linkedlist
@@ -84,5 +86,56 @@ public class SortedPartsList {
 		
 		return current.getComputerPart();
 	}
+	
+	// Returns a string which gives description for the object and returns the list of items
+	public String toString() {
+		
+		PartsNode<ComputerPart> current = head;
 
+		// Just return an empty bracket
+		if (current.equals(null)) {
+			return "[]";
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append('[');
+		
+		while (current.getNextNode() != null) {
+			
+			String description = current.getComputerPart().toString();
+			sb.append(System.getProperty("line.separator") + description); // Separate the line and append description
+			
+			current = current.getNextNode();
+		}
+		
+		return sb.toString();
+		
+	}
+
+	public double averagePrice() {
+		
+		double total = 0;
+		int count = 0;
+		
+		PartsNode<ComputerPart> current = head;
+		
+		if (current.equals(null)) {
+			throw new IllegalArgumentException("The list is empty");
+		} 
+		
+		while (current.getNextNode() != null) {
+			// Get the cost from the current node
+			total += current.getComputerPart().cost;
+			
+			// Grab the next node
+			current = current.getNextNode();
+			
+			count++;
+		}
+		
+		double average = total / count;
+		
+		return average;
+	}
+	
 }
