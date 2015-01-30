@@ -308,12 +308,6 @@ public class SortedPartsList {
 		
 		System.out.println(list.toString());
 		
-		TapeDrive tapeDrive2 = new TapeDrive(200, 3000, 5);
-		tapeDrive2.setCost(5.00);
-		
-		list.insert(tapeDrive2, 4);
-		System.out.println(list.toString());
-		
 		/**** TEST PASS ****/
 		
 		// Delete and item from the linked list at a current position
@@ -326,6 +320,18 @@ public class SortedPartsList {
 		System.out.println(list.toString());
 		list.searchAndRemove("TapeDrive");
 		System.out.println(list.toString());
+		
+		/**** NO CHANGE ****/
+		
+		// Insert an item
+		
+				TapeDrive tapeDrive2 = new TapeDrive(200, 3000, 5);
+				tapeDrive2.setCost(5.00);
+				
+				list.insert(tapeDrive2, 4);
+				System.out.println(list.toString());
+				
+		/**** FAILS ****/
 		
 	}
 	
