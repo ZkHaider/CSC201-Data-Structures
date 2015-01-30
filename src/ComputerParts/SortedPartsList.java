@@ -316,6 +316,12 @@ public class SortedPartsList {
 		
 		/**** TEST PASS ****/
 		
+		// Get the Average Price
+		
+		System.out.println(list.averagePrice());
+		
+		/**** TEST PASS ****/
+		
 		// Search and remove a part
 		System.out.println(list.toString());
 		list.searchAndRemove("TapeDrive");
