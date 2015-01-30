@@ -2,6 +2,8 @@ package ComputerParts;
 
 public class FlashDrive extends ComputerPart {
 	
+	public static final String NAME = "FlashDrive";
+	
 	private int isInternalOrExternal;
 	
 	public FlashDrive(int capacity, double latency, int isInternalOrExternal) {
@@ -52,5 +54,8 @@ public class FlashDrive extends ComputerPart {
 		this.description = description;
 	}
 
+	public String getName() {
+		return NAME;
+	}
 
 }

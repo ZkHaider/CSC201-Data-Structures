@@ -10,6 +10,8 @@ package ComputerParts;
 
 public class TapeDrive extends ComputerPart {
 	
+	public static final String NAME = "TapeDrive";
+	
 	private int position;
 	
 	public TapeDrive(int capacity, double latency, int position) {
@@ -58,6 +60,10 @@ public class TapeDrive extends ComputerPart {
 	
 	public void setCost(double cost) {
 		this.cost = cost;
+	}
+	
+	public String getName() {
+		return NAME;
 	}
 
 }

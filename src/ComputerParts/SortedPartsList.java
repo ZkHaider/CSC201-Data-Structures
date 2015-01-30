@@ -66,6 +66,68 @@ public class SortedPartsList {
 		}
 	}
 	
+	public void insert(ComputerPart part, int index) {
+		// Inserts the specified element at the correct index 
+		PartsNode<ComputerPart> tempNode = new PartsNode<ComputerPart>();
+		PartsNode<ComputerPart> current = head;
+		
+		// Now iterate over to the index value or to the end of the list
+		for (int i = 0; i < index && current.getNextNode() != null; i++) {
+			current = current.getNextNode(); // Grab the index value and store it
+		}
+		
+		// Reference tempNodes next node to currents next node
+		tempNode.setNextNode(current.getNextNode());
+		// Refernece currents next node to temp nodes next node
+		current.setNextNode(tempNode.getNextNode());
+		// Increment the size up by one
+		size++;
+		
+	}
+	
+	public ComputerPart get(int index) {
+		// Returns the element at the specified index
+		
+		// Do a check and see if the index is 1 or higher
+		if (index <= 0) {
+			throw new NoSuchPartException("The index cannot be less than one");
+		}
+		
+		PartsNode<ComputerPart> current = head.getNextNode();
+		for (int i = 0; i < index; i++) {
+			if (current.getNextNode() == null) {
+				throw new NoSuchPartException("That part is null");
+			}
+			
+			current = current.getNextNode();
+		} 
+		
+		return current.getComputerPart();
+	}
+	
+	public void remove(int index) {
+		// Remove the element at the specified index value
+		
+		// Do a check and see if the index is not out of bounds or negative
+		if (index < 1 || index > size) {
+			throw new NoSuchPartException("The index is out of bounds or negative");
+		}
+		
+		PartsNode<ComputerPart> current = head;
+		
+		for (int i = 0; i < index; i++) {
+			if (current.getNextNode() == null) {
+				System.out.println("The node was null");
+			}
+			
+			current = current.getNextNode();
+		}
+		// Set the next node 
+		current.setNextNode(current.getNextNode().getNextNode());
+		// Decrement the size by one
+		size--;
+	}
+	
 	public ComputerPart removeFirst() {
 		
 		if (head == null) {
@@ -97,6 +159,19 @@ public class SortedPartsList {
 		return current.getComputerPart();
 	}
 	
+	public void searchAndRemove(String name) {
+		
+		PartsNode<ComputerPart> currentNode = head;
+		PartsNode<ComputerPart> before;
+		
+		// If it is the first element 
+		if (currentNode.getComputerPart()) {
+			// We already have the item
+			return;
+		}
+		
+	}
+	
 	// Returns a string which gives description for the object and returns the list of items
 	public String toString() {
 		
@@ -118,7 +193,6 @@ public class SortedPartsList {
 			for (int i = 0; i < size; i++) {
 				output += current.getComputerPart().description + " and its cost is " +
 							current.getComputerPart().cost + "\n";
-				
 				current = current.getNextNode();
 			}
 		

@@ -11,6 +11,8 @@ package ComputerParts;
  */
 
 public class Case extends ComputerPart {
+	
+	public static final String NAME = "Case";
 
 	public Case(double cost) {
 		super();
@@ -30,5 +32,8 @@ public class Case extends ComputerPart {
 		this.cost = cost;
 	}
 	
+	public String getName() {
+		return NAME;
+	}
 
 }

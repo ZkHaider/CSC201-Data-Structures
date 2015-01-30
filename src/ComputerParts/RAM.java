@@ -10,6 +10,8 @@ package ComputerParts;
 
 public class RAM extends ComputerPart {
 	
+	public static final String NAME = "RAM";
+	
 	public RAM(int capacity, double latency) {
 		super();
 		this.capacity = capacity;
@@ -44,6 +46,10 @@ public class RAM extends ComputerPart {
 	
 	public void setCost(double cost) {
 		this.cost = cost;
+	}
+	
+	public String getName() {
+		return NAME;
 	}
 	
 }

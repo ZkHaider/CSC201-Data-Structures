@@ -2,6 +2,8 @@ package ComputerParts;
 
 public class HardDisk extends ComputerPart {
 	
+	public static final String NAME = "HardDisk";
+	
 	public HardDisk(int capacity, double latency) {
 		super();
 		this.capacity = capacity;
@@ -47,6 +49,8 @@ public class HardDisk extends ComputerPart {
 		this.cost = cost;
 	}
 
-	
+	public String getName() {
+		return NAME;
+	}
 
 }
