@@ -116,26 +116,41 @@ public class SortedPartsList {
 		
 		double total = 0;
 		int count = 0;
+		double average = 0;
 		
-		PartsNode<ComputerPart> current = head;
-		
-		if (current.equals(null)) {
-			throw new IllegalArgumentException("The list is empty");
-		} 
-		
-		while (current.getNextNode() != null) {
-			// Get the cost from the current node
-			total += current.getComputerPart().cost;
+		if (head == null) {
+			throw new NoSuchPartException("The list is empty");
+		} else {
 			
-			// Grab the next node
-			current = current.getNextNode();
+			PartsNode<ComputerPart> current = head;
+		
+			while (current.getNextNode() != null) {
+				// Get the cost from the current node
+				total += current.getComputerPart().cost;
+				
+				// Grab the next node
+				current = current.getNextNode();
+				
+				// Increment the count up by one
+				count++;
+			}
 			
-			count++;
+			average = total / count;
+			
 		}
 		
-		double average = total / count;
-		
 		return average;
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		// Create a new sortedlinkedlsit 
+		SortedPartsList list = new SortedPartsList();
+		
+		list.averagePrice();
+		
+		
 	}
 	
 }
