@@ -2,18 +2,16 @@ package ComputerParts;
 
 public class FlashDrive extends ComputerPart {
 	
-	public static final String NAME = "FlashDrive";
-	
 	private int isInternalOrExternal;
 	
 	public FlashDrive(int capacity, double latency, int isInternalOrExternal) {
 		super();
+		this.name = "FlashDrive";
 		this.isInternalOrExternal = isInternalOrExternal;
 		this.capacity = capacity;
 		this.latency = latency;
 		this.description = "This is a FlashDrive Object, it's capacity is " +
-					capacity + ", its latency is " + latency + " and its description is " +
-					description;
+					capacity + ", its latency is " + latency;
 		
 	}
 	
@@ -55,7 +53,15 @@ public class FlashDrive extends ComputerPart {
 	}
 
 	public String getName() {
-		return NAME;
+		return name;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	
+	public double getCost() {
+		return cost;
 	}
 
 }

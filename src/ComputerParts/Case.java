@@ -11,11 +11,10 @@ package ComputerParts;
  */
 
 public class Case extends ComputerPart {
-	
-	public static final String NAME = "Case";
 
 	public Case(double cost) {
 		super();
+		this.name = "Case";
 		this.cost = cost;
 		this.description = "The cost for this case is " + cost;
 	}
@@ -33,7 +32,7 @@ public class Case extends ComputerPart {
 	}
 	
 	public String getName() {
-		return NAME;
+		return name;
 	}
 
 }

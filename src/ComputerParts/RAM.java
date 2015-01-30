@@ -10,10 +10,10 @@ package ComputerParts;
 
 public class RAM extends ComputerPart {
 	
-	public static final String NAME = "RAM";
 	
 	public RAM(int capacity, double latency) {
 		super();
+		this.name = "RAM";
 		this.capacity = capacity;
 		this.latency = latency;
 		this.description = "This is a RAM Object, it's capacity is " +
@@ -49,7 +49,7 @@ public class RAM extends ComputerPart {
 	}
 	
 	public String getName() {
-		return NAME;
+		return name;
 	}
 	
 }

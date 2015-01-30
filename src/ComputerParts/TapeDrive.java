@@ -10,11 +10,11 @@ package ComputerParts;
 
 public class TapeDrive extends ComputerPart {
 	
-	public static final String NAME = "TapeDrive";
-	
 	private int position;
 	
 	public TapeDrive(int capacity, double latency, int position) {
+		super();
+		this.name = "TapeDrive";
 		this.capacity = capacity;
 		this.latency = latency;
 		this.position = position;
@@ -63,7 +63,7 @@ public class TapeDrive extends ComputerPart {
 	}
 	
 	public String getName() {
-		return NAME;
+		return name;
 	}
 
 }

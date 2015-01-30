@@ -2,9 +2,10 @@ package ComputerParts;
 
 public class GraphicsCard extends ComputerPart {
 	
-	public static final String NAME = "GraphicsCard";
 	
 	public GraphicsCard(int capacity, double latency) {
+		super();
+		this.name = "GraphicsCard";
 		this.capacity = capacity;
 		this.latency = latency;
 		this.description = "This is a GraphicsCard Object, it's capacity is " +
@@ -49,7 +50,7 @@ public class GraphicsCard extends ComputerPart {
 	}
 	
 	public String getName() {
-		return NAME;
+		return name;
 	}
 	
 }

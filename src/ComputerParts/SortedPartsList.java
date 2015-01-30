@@ -159,16 +159,60 @@ public class SortedPartsList {
 		return current.getComputerPart();
 	}
 	
-	public void searchAndRemove(String name) {
+	public ComputerPart searchAndRemove(String name) {
+		
+		if (size == 0) {
+			throw new NoSuchPartException("The list is empty");
+		}
 		
 		PartsNode<ComputerPart> currentNode = head;
 		PartsNode<ComputerPart> before;
 		
-		// If it is the first element 
-		if (currentNode.getComputerPart()) {
-			// We already have the item
-			return;
+		String descriptionFromNode = currentNode.getComputerPart().getName().toLowerCase();
+		String lowerCaseParameter = name.toLowerCase();
+		
+		ComputerPart partToReturn = null;
+		
+		boolean isItThere = false;
+		
+		// Catch and see if there is an item with that name in the system
+		for (int i = 0; i < size; i++) {
+			String description = currentNode.getComputerPart().description.toLowerCase();
+			isItThere = description.contentEquals(lowerCaseParameter);
+			
+			description = currentNode.getNextNode().getComputerPart().description.toLowerCase();
 		}
+		
+//		if (!isItThere) {
+//			throw new NoSuchPartException("This part does not exist");
+//		}
+		
+		// If it is the first element 
+		if (descriptionFromNode.equals(lowerCaseParameter)) {
+			// We already have the item grab it remove it and return it
+			ComputerPart data = head.getComputerPart(); // Rely here on garbage collection
+			head = head.getNextNode();
+			return data;
+		} else {
+			// Else search through the list and find the item then remove it from the list and return it 
+			
+			// Go through list
+			for (int i = 0; i < size; i++) {
+				String current = currentNode.getComputerPart().getName().toLowerCase();
+				
+				if (current.equals(lowerCaseParameter)) {
+					partToReturn = currentNode.getComputerPart();
+					
+					currentNode.setNextNode(currentNode.getNextNode().getNextNode()); // Rearrange reference in memory
+					size--; // Decrease size of list by one part
+					
+					return partToReturn;
+				}
+			}
+			
+		}
+		
+		return partToReturn;
 		
 	}
 	
@@ -264,6 +308,24 @@ public class SortedPartsList {
 		
 		System.out.println(list.toString());
 		
+		TapeDrive tapeDrive2 = new TapeDrive(200, 3000, 5);
+		tapeDrive2.setCost(5.00);
+		
+		list.insert(tapeDrive2, 4);
+		System.out.println(list.toString());
+		
+		/**** TEST PASS ****/
+		
+		// Delete and item from the linked list at a current position
+		list.remove(2);
+		System.out.println(list.toString());
+		
+		/**** TEST PASS ****/
+		
+		// Search and remove a part
+		System.out.println(list.toString());
+		list.searchAndRemove("TapeDrive");
+		System.out.println(list.toString());
 		
 	}
 	

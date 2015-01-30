@@ -7,5 +7,11 @@ public abstract class ComputerPart {
 	protected double latency;
 	protected String description;
 	
+	protected String name;
+	
+	public String getName() {
+		return name;
+	}
+	
 
 }
