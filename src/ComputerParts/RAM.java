@@ -14,9 +14,8 @@ public class RAM extends ComputerPart {
 		super();
 		this.capacity = capacity;
 		this.latency = latency;
-		this.description = "The capacity of the RAM object is " + capacity 
-					+ " , the latency is " + latency + " and the cost is " +
-					cost;
+		this.description = "This is a RAM Object, it's capacity is " +
+				capacity + ", its latency is " + latency;
 	}
 	
 	public String toString() {

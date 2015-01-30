@@ -6,8 +6,7 @@ public class GraphicsCard extends ComputerPart {
 		this.capacity = capacity;
 		this.latency = latency;
 		this.description = "This is a GraphicsCard Object, it's capacity is " +
-					capacity + ", its latency is " + latency + " and its description is " +
-					description;
+					capacity + ", its latency is " + latency;
 		
 	}
 	
@@ -38,6 +37,13 @@ public class GraphicsCard extends ComputerPart {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	public double getCost() {
+		return cost;
+	}
+	
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
 	
 }

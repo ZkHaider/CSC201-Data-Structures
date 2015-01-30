@@ -16,9 +16,8 @@ public class TapeDrive extends ComputerPart {
 		this.capacity = capacity;
 		this.latency = latency;
 		this.position = position;
-		this.description = "The capacity of the tape drive is "  + capacity +
-					  ", the latency is "  + latency + " and the position is"
-					  + position;
+		this.description = "This is a TapeDrive Object, it's capacity is " +
+				capacity + ", its latency is " + latency;
 	}
 	
 	public int getCapacity() {
@@ -53,6 +52,12 @@ public class TapeDrive extends ComputerPart {
 		this.description = description;
 	}
 
+	public double getCost() {
+		return cost;
+	}
 	
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
 
 }

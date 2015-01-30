@@ -1,24 +1,33 @@
 package ComputerParts;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-
 public class SortedPartsList {
 	
 	protected PartsNode<ComputerPart> head; // The very top of the linkedlist
+	protected PartsNode<ComputerPart> tail; // The very end of the linkedlist
 	protected long size; // Number of nodes in the linkedlist
 	
 	
 	public SortedPartsList() {
 		head = null;
+		tail = null;
 		size = 0;
 	}
 	
 	// Add the first item in the linkedlist 
 	public void addFirst(ComputerPart item) {
 		
+		boolean isComputerPart = item instanceof ComputerPart;
+		
 		// Do a check on item using the equals method in the base class
-		if (!item.isComputerPart(item)) {
-			throw new IllegalArgumentException("This is not a compter part");
+		if (!isComputerPart) {
+			throw new IllegalArgumentException("This is not a computer part");
+		}
+		
+		if (tail == null) {
+			
+			PartsNode<ComputerPart> node = new PartsNode<ComputerPart>();
+			node.setComputerPart(item);
+			tail = node;
 		}
 		
 		//Add to the front of the list, that is 
@@ -30,6 +39,7 @@ public class SortedPartsList {
 		node.setNextNode(head);
 		head = node; // Change memory allocation, and let java take care via garbage collection
 		
+		size++;
 		// This comes out to be O(1) 
 	}
 	
@@ -90,26 +100,31 @@ public class SortedPartsList {
 	// Returns a string which gives description for the object and returns the list of items
 	public String toString() {
 		
+		String output = "This is a SinglyLinkedList with the following items:\n" + "\n";
+		
 		PartsNode<ComputerPart> current = head;
-
-		// Just return an empty bracket
-		if (current.equals(null)) {
-			return "[]";
+		
+		// Do a check if the size of the list is 1
+		if (size == 0) {
+			
+			throw new NoSuchPartException("The list is empty");
+			
+		} else if (size == 1) {
+			
+			return output += current.getComputerPart().description;
+			
+		} else {
+			
+			for (int i = 0; i < size; i++) {
+				output += current.getComputerPart().description + " and its cost is " +
+							current.getComputerPart().cost + "\n";
+				
+				current = current.getNextNode();
+			}
+		
 		}
 		
-		StringBuilder sb = new StringBuilder();
-		sb.append('[');
-		
-		while (current.getNextNode() != null) {
-			
-			String description = current.getComputerPart().toString();
-			sb.append(System.getProperty("line.separator") + description); // Separate the line and append description
-			
-			current = current.getNextNode();
-		}
-		
-		return sb.toString();
-		
+		return output;
 	}
 
 	public double averagePrice() {
@@ -148,7 +163,32 @@ public class SortedPartsList {
 		// Create a new sortedlinkedlsit 
 		SortedPartsList list = new SortedPartsList();
 		
-		list.averagePrice();
+		//list.averagePrice(); // Should return NoSuchPartException
+		
+		/***** TEST PASS *****/
+		
+		// Create some computer part objects and add them to the list
+		
+		RAM ram = new RAM(300, 4000);
+		ram.setCost(50.00);
+		
+		TapeDrive tapeDrive = new TapeDrive(200, 6000, 2);
+		tapeDrive.setCost(60.00);
+		
+		HardDisk hardDisk = new HardDisk(200, 4000);
+		hardDisk.setCost(70.00);
+		
+		GraphicsCard graphicsCard = new GraphicsCard(300, 7000);
+		graphicsCard.setCost(280.00);
+		
+		
+		
+		list.addFirst(ram);
+		list.addFirst(tapeDrive);
+		list.addFirst(hardDisk);
+		list.addFirst(graphicsCard);
+		
+		System.out.println(list.toString());
 		
 		
 	}
