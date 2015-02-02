@@ -65,6 +65,34 @@ public class SortedPartsList {
 			}
 		}
 	}
+
+	public void insert(ComputerPart part) {
+
+		if (head == null) {
+			head = new PartsNode<ComputerPart>();
+			head.setComputerPart(part);
+			return;
+		}
+
+		PartsNode<ComputerPart> previous = null;
+		PartsNode<ComputerPart> current = head;
+
+		while (current.getNextNode() != null) {
+			previous = current;
+			current = current.getNextNode();
+		} // add current.getData().compareTo(part) > 0
+
+		if (previous == null) {
+			//if (current.getData().compareTo(part) > 0) {
+				//previous = current;
+			//} else {
+				//PartsNode<ComputerPart> newNode = new PartsNode<ComputerPart>();
+				//newNode.setComputerPart(part);
+				//newNode.setNextNode(head);
+			//}
+		}
+
+	}
 	
 	public void insert(ComputerPart part, int index) {
 		// Inserts the specified element at the correct index 
