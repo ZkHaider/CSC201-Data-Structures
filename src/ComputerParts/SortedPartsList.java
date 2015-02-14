@@ -98,7 +98,7 @@ public class SortedPartsList {
 		// Inserts the specified element at the correct index 
 		PartsNode<ComputerPart> tempNode = new PartsNode<ComputerPart>();
 		PartsNode<ComputerPart> current = head;
-		
+			
 		// Now iterate over to the index value or to the end of the list
 		for (int i = 0; i < index && current.getNextNode() != null; i++) {
 			current = current.getNextNode(); // Grab the index value and store it
