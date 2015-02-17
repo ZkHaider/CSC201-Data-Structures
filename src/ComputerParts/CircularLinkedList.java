@@ -1,4 +1,6 @@
 
+package ComputerParts;
+
 
 public class CircularLinkedList {
 
@@ -12,6 +14,7 @@ public class CircularLinkedList {
 	public CircularLinkedList() {
 		head.setNextNode(head);
 		// Set previous node to head as well
+		
 	}
 
 	public void insert(ComputerPart part, int index) {
