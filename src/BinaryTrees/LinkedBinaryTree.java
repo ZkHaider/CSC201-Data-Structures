@@ -8,8 +8,8 @@ package BinaryTrees;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
 import BinaryTrees.interfaces.BinaryTree;
 import BinaryTrees.interfaces.Position;
@@ -17,13 +17,13 @@ import BinaryTrees.interfaces.Position;
 public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	
 	// Global Variables
-	protected Position<E> root; // The reference to the root node, (Head Node)
-	protected int size; // The number of nodes present in this Data Structures
+	protected TreeNode<E> root; // The reference to the root node, (Head Node)
+	protected int size = 0; // The number of nodes present in this Data Structures
 	
 	// Creates an empty Binary Tree
 	public LinkedBinaryTree() {
-		root = null; // Start with an empty tree
-		size = 0;
+		root = new TreeNode<E>(null, null, null, null); // Start with an empty tree
+		size++;
 	}
 	
 
@@ -41,16 +41,16 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 
 	@Override
 	public Iterator<E> iterator() throws Exception {
-		Iterable<Position<E>> positions = positions();
+		Iterable<TreeNode<E>> positions = positions();
 		ArrayList<E> elements = new ArrayList<>();
-		for (Position<E> pos : positions)
+		for (TreeNode<E> pos : positions)
 			elements.add(pos.getElement());
 		return elements.iterator(); // An iterator of elements
 	}
 
 	@Override
-	public Iterable<Position<E>> positions() throws Exception {
-		ArrayList<Position<E>> positions = new ArrayList<>();
+	public Iterable<TreeNode<E>> positions() throws Exception {
+		ArrayList<TreeNode<E>> positions = new ArrayList<>();
 		if (size != 0) {
 			preorderPositions(root(), positions); // Assigns positions in preorder
 		}
@@ -58,32 +58,32 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	}
 
 	@Override
-	public E replace(Position<E> v, E e) throws Exception {
-		Position<E> vv = checkPosition(v);
+	public E replace(TreeNode<E> v, E e) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
 		E temp = v.getElement();
 		vv.setElement(e);
 		return temp;
 	}
 
 	@Override
-	public Position<E> parent(Position<E> v) throws Exception {
-		Position<E> vv = checkPosition(v);
-		Position<E> parentPos = vv.getParent();
+	public TreeNode<E> parent(TreeNode<E> v) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
+		TreeNode<E> parentPos = (TreeNode<E>) vv.getParent();
 		if (parentPos == null)
 			throw new Exception("Parent is null");
 		return parentPos;
 	}
 
 	@Override
-	public Position<E> root() throws Exception {
+	public TreeNode<E> root() throws Exception {
 		if (root == null)
 			throw new Exception("Root is null");
 		return root;
 	}
 
 	@Override
-	public Iterable<Position<E>> children(Position<E> v) throws Exception {
-		ArrayList<Position<E>> children = new ArrayList<>();
+	public Iterable<TreeNode<E>> children(TreeNode<E> v) throws Exception {
+		ArrayList<TreeNode<E>> children = new ArrayList<>();
 		if (hasLeft(v))
 			children.add(left(v));
 		if (hasRight(v))
@@ -92,58 +92,59 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	}
 
 	@Override
-	public boolean isInternal(Position<E> v) throws Exception {
+	public boolean isInternal(TreeNode<E> v) throws Exception {
 		checkPosition(v); // An auxillary method
 		return (hasLeft(v) || hasRight(v));
 	}
 
 	@Override
-	public boolean isExternal(Position<E> v) {
+	public boolean isExternal(TreeNode<E> v) {
 		return false;
 	}
 
 	@Override
-	public boolean isRoot(Position<E> v) throws Exception {
+	public boolean isRoot(TreeNode<E> v) throws Exception {
 		checkPosition(v); // Auxillary Method
 		return (v == root());
 	}
 
 	@Override
-	public Position<E> left(Position<E> v) throws Exception {
-		Position<E> vv = checkPosition(v);
-		Position<E> leftPosition = vv.getLeft();
+	public TreeNode<E> left(TreeNode<E> v) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
+		TreeNode<E> leftPosition = (TreeNode<E>) vv.getLeft();
 		if (leftPosition == null)
 			throw new Exception("No left child");
 		return leftPosition;
 	}
 
 	@Override
-	public Position<E> right(Position<E> v) {
+	public TreeNode<E> right(TreeNode<E> v) {
 		return null;
 	}
 
 	@Override
-	public boolean hasLeft(Position<E> v) throws Exception {
-		Position<E> vv = checkPosition(v);
+	public boolean hasLeft(TreeNode<E> v) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
 		return (vv.getLeft() != null);
 	}
 
 	@Override
-	public boolean hasRight(Position<E> v) {
-		return false;
+	public boolean hasRight(TreeNode<E> v) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
+		return (vv.getRight() != null);
 	}
 	
 	// Additional accessor method returns the siblings of the node
-	public Position<E> sibling(Position<E> v) throws Exception {
-		Position<E> vv = checkPosition(v);
-		Position<E> parentPos = vv.getParent();
+	public TreeNode<E> sibling(TreeNode<E> v) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
+		TreeNode<E> parentPos = (TreeNode<E>) vv.getParent();
 		if (parentPos != null) {
-			Position<E> sibPos;
-			Position<E> leftPos = parentPos.getLeft();
+			TreeNode<E> sibPos;
+			TreeNode<E> leftPos = (TreeNode<E>) parentPos.getLeft();
 			if (leftPos == null) {
-				sibPos = parentPos.getRight();
+				sibPos = (TreeNode<E>) parentPos.getRight();
 			} else {
-				sibPos = parentPos.getLeft();
+				sibPos = (TreeNode<E>) parentPos.getLeft();
 			}
 			if (sibPos != null) {
 				return sibPos;
@@ -154,7 +155,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	
 	// Additional Update Methods
 	// Add a rootmethod to an empty tree
-	public Position<E> addRoot(E e) throws Exception {
+	public TreeNode<E> addRoot(E e) throws Exception {
 		if (!isEmpty()) {
 			throw new Exception("Tree already has a root");
 		}
@@ -165,27 +166,39 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	}
 	
 	// Insert a left child at a given node
-	public Position<E> insertLeft(Position<E> v, E e) throws Exception {
-		Position<E> vv = checkPosition(v);
-		Position<E> leftPos = vv.getLeft();
+	public TreeNode<E> insertLeft(TreeNode<E> v, E e) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
+		TreeNode<E> leftPos = (TreeNode<E>) vv.getLeft();
 		if (leftPos != null) {
 			throw new Exception("Node already has a left child");
 		}
-		Position<E> ww = createNode(e, vv, null, null);
+		TreeNode<E> ww = createNode(e, vv, null, null);
 		vv.setLeft(ww);
 		size++;
 		return ww;
 	}
 	
+	public TreeNode<E> insertRight(TreeNode<E> v, E e) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
+		TreeNode<E> rightPos = (TreeNode<E>) vv.getRight();
+		if (rightPos != null) {
+			throw new Exception("Node already has a right child");
+		}
+		TreeNode<E> ww = createNode(e, vv, null, null);
+		vv.setRight(ww);
+		size++;
+		return ww;
+	} 
+	
 	// Remove a node with zero or one child
-	public E remove(Position<E> v) throws Exception {
-		Position<E> vv = checkPosition(v);
-		Position<E> leftPos = vv.getLeft();
-		Position<E> rightPos = vv.getRight();
+	public E remove(TreeNode<E> v) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
+		TreeNode<E> leftPos = (TreeNode<E>) vv.getLeft();
+		TreeNode<E> rightPos = (TreeNode<E>) vv.getRight();
 		if (leftPos != null && rightPos != null) {
 			throw new Exception("Cannot remove a node with two children");
 		}
-		Position<E> ww; // The only child of v, if any
+		TreeNode<E> ww; // The only child of v, if any
 		if (leftPos != null)
 			ww = leftPos;
 		else if (rightPos != null)
@@ -198,7 +211,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 			root = ww;
 		} else {
 			// vv is not the root
-			Position<E> uu = vv.getParent();
+			TreeNode<E> uu = (TreeNode<E>) vv.getParent();
 			if (vv == uu.getLeft())
 				uu.setLeft(ww);
 			else 
@@ -211,18 +224,18 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	}
 	
 	// Attach two trees to be sub trees of an external node
-	public void attach(Position<E> v, BinaryTree<E> bt1, BinaryTree<E> bt2) throws Exception {
-		Position<E> vv = checkPosition(v);
+	public void attach(TreeNode<E> v, LinkedBinaryTree<E> bt1, LinkedBinaryTree<E> bt2) throws Exception {
+		TreeNode<E> vv = checkPosition(v);
 		if (isInternal(v))
 			throw new Exception("Cannot attach from internal node");
 		int newSize = size + bt1.size() + bt2.size();
 		if (!bt1.isEmpty()) {
-			Position<E> root1 = checkPosition(bt1.root());
+			TreeNode<E> root1 = checkPosition(bt1.root());
 			vv.setLeft(root1);
 			root1.setParent(vv); // bt1 should be invalidated
 		}
 		if (!bt2.isEmpty()) {
-			Position<E> root2 = checkPosition(bt2.root());
+			TreeNode<E> root2 = checkPosition(bt2.root());
 			vv.setRight(root2);
 			root2.setParent(vv); // bt2 should be in
 		}
@@ -230,22 +243,27 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 	}
 	
 	// If v is a BinaryNode cast to Position<E> else throw an exception
-	protected Position<E> checkPosition(Position<E> v) throws Exception {
-		if (v == null || !(v instanceof Position)) {
+	protected TreeNode<E> checkPosition(TreeNode<E> v) throws Exception {
+		if (v == null)  {
+			System.out.println("V null");
+		} else if (!(v instanceof TreeNode)) {
+			System.out.println("V is not an instance of TreeNode");
+		}
+		if (v == null || !(v instanceof TreeNode)) {
 			throw new Exception("The position is invalid");
 		}
-		return (Position<E>) v;
+		return (TreeNode<E>) v;
 	}
 	
 	// Create a new binary tree node
-	protected Position<E> createNode(E element, Position<E> parent, 
-			Position<E> left, Position<E> right) {
+	protected TreeNode<E> createNode(E element, TreeNode<E> parent, 
+			TreeNode<E> left, TreeNode<E> right) {
 		return new TreeNode<E>(element, parent, left, right);
 	}
 	
 	// Creates a list storing the nodes in the subtree of a node, 
 	// ordered according to the preorder transversal of the subtree
-	protected void preorderPositions(Position<E> v, ArrayList<Position<E>> positions)
+	protected void preorderPositions(TreeNode<E> v, ArrayList<TreeNode<E>> positions)
 		throws Exception {
 		positions.add(v);
 		if (hasLeft(v)) {
@@ -254,6 +272,116 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 		if (hasRight(v)) {
 			preorderPositions(right(v), positions); // recurse on the right child
 		}
+	}
+	
+	public TreeNode<E> preOrderNext(TreeNode<E> v) {
+		
+		if (v.getLeft() != null)
+			return v.getLeft();
+		else if (v.getRight() != null) 
+			return v.getRight();
+		else {
+			TreeNode<E> parent = v.getParent();
+			TreeNode<E> child = v;
+			while (parent != null && 
+					(parent.getRight() == null || parent.getRight().equals(child))) {
+				child = parent;
+				parent = child.getParent();
+			}
+			if (parent == null) 
+				return null;
+			return parent.getRight();
+				
+		}
+	}
+	
+	public TreeNode<E> inOrderNext(TreeNode<E> v) {
+		
+		// Get v's right child if it isn't null iterate through and get all left childs
+		// return the child
+		if (v.getRight() != null) {
+			TreeNode<E> child = v.getRight();
+			while (child.getLeft() != null) 
+				child = child.getLeft();
+			return child;
+		} else {
+			if (v.getParent() == null)
+				return null;
+			if (v.getParent().getLeft() != null && v.getParent().getLeft().equals(v))
+				return v.getParent();
+			else {
+				TreeNode<E> parent = v.getParent();
+				TreeNode<E> child = v;
+				while (parent != null && 
+						(parent.getRight() != null || parent.getRight().equals(child))) {
+					child = parent;
+					parent = child.getParent();
+				}
+				if (parent == null) 
+					return null;
+				return parent;
+			}
+		}
+	}
+	
+	public TreeNode<E> postOrderNext(TreeNode<E> v) throws Exception {
+		if (v.getParent() == null) 
+			throw new Exception("Parent is null");
+		if (v.getParent().getRight() != null && v.getParent().getRight().equals(v))
+			return v.getParent();
+		else {
+			if (v.getParent().getRight() != null) {
+				return v.getParent();
+			}
+			else {
+				TreeNode<E> node = v.getParent().getRight();
+				while (node.isInternal()) {
+					if (node.getLeft() != null) {
+						node = node.getLeft();
+					} else {
+						node = node.getRight();
+					}
+					return node;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static void main(String[] args) throws Exception {
+		
+		// Setup the LinkedBinaryTree, creates and empty root
+		LinkedBinaryTree<Integer> linkedBinaryTree = new LinkedBinaryTree<Integer>();
+		System.out.println(linkedBinaryTree.root.getElement()); // Should print null
+		
+		// Set root node to a 10
+		linkedBinaryTree.root().setElement(10);
+		TreeNode<Integer> root = linkedBinaryTree.root();
+		System.out.println(linkedBinaryTree.root.getElement()); // Should print 10
+		
+		// Create a new node and set as a left child
+		linkedBinaryTree.insertLeft(root, 5);
+		System.out.println(String.valueOf(linkedBinaryTree.hasLeft(root))); // Should return true
+		System.out.println(String.valueOf(linkedBinaryTree.hasRight(root))); // Should return false
+		
+		// Create a new node and set as a right child
+		linkedBinaryTree.insertRight(root, 7);
+		System.out.println(String.valueOf(linkedBinaryTree.hasRight(root))); // Should return true
+		
+		
+		/* Now we should have a binary tree with a root of 10, left child of 5, and a right child
+		 * of 7.
+		 */
+		
+		// Should return 5
+		System.out.println(linkedBinaryTree.preOrderNext(linkedBinaryTree.root()).getElement());
+		
+		// Should return 7
+		System.out.println(linkedBinaryTree.inOrderNext(linkedBinaryTree.root()).getElement());
+		
+		// Should return 10
+		System.out.println(linkedBinaryTree.postOrderNext(linkedBinaryTree.root().getLeft()).getElement());
+		
 	}
 
 }

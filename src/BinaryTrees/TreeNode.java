@@ -6,10 +6,10 @@ public class TreeNode<E> implements Position<E> {
 	
 	private E element;
 	
-	private Position<E> left, right, parent; // The Adjacent Nodes
+	private TreeNode<E> left, right, parent; // The Adjacent Nodes
 	
-	public TreeNode(E element, Position<E> parent,
-			Position<E> left, Position<E> right) {
+	public TreeNode(E element, TreeNode<E> parent,
+			TreeNode<E> left, TreeNode<E> right) {
 		setElement(element);
 		setParent(parent);
 		setLeft(left);
@@ -30,38 +30,42 @@ public class TreeNode<E> implements Position<E> {
 	
 	// Returns the left child of this position
 	@Override
-	public Position<E> getLeft() {
+	public TreeNode<E> getLeft() {
 		return left;
 	}
 	
 	// Sets the left child at this position
 	@Override
-	public void setLeft(Position<E> left) {
+	public void setLeft(TreeNode<E> left) {
 		this.left = left;
 	}
 	
 	// Returns the right child at this position
 	@Override
-	public Position<E> getRight() {
+	public TreeNode<E> getRight() {
 		return right;
 	}
 	
 	// Sets the right child at this position
 	@Override
-	public void setRight(Position<E> right) {
+	public void setRight(TreeNode<E> right) {
 		this.right = right;
 	}
 	
 	// Gets the parent node
 	@Override
-	public Position<E> getParent() {
+	public TreeNode<E> getParent() {
 		return parent;
 	}
 	
 	// Sets the parent node
 	@Override
-	public void setParent(Position<E> parent) {
+	public void setParent(TreeNode<E> parent) {
 		this.parent = parent;
 	}
-
+	
+	public boolean isInternal() {
+		return (this.getLeft() != null || this.getRight() != null);
+	}
+	
 }

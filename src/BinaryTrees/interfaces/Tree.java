@@ -2,6 +2,8 @@ package BinaryTrees.interfaces;
 
 import java.util.Iterator;
 
+import BinaryTrees.TreeNode;
+
 public interface Tree<E> {
 
 	// Return the number of nodes in the tree
@@ -14,29 +16,29 @@ public interface Tree<E> {
 	public Iterator<E> iterator() throws Exception;
 	
 	// Returns an iterable collection of the nodes
-	public Iterable<Position<E>> positions() throws Exception;
+	public Iterable<TreeNode<E>> positions() throws Exception;
 	
 	// Replaces the element at a given node
-	public E replace(Position<E> v, E e) throws IllegalArgumentException, Exception;
+	public E replace(TreeNode<E> v, E e) throws IllegalArgumentException, Exception;
 	
 	// Returns the parent of this node
-	public Position<E> parent(Position<E> v) throws Exception;
+	public TreeNode<E> parent(TreeNode<E> v) throws Exception;
 	
 	// Returns the parent of this node
-	public Position<E> root() throws Exception;
+	public TreeNode<E> root() throws Exception;
 	
 	// Returns an Iterable Collection of the children of a given node
-	public Iterable<Position<E>> children(Position<E> v) throws Exception;
+	public Iterable<TreeNode<E>> children(TreeNode<E> v) throws Exception;
 	
 	// Returns whether the given node is internal or not
-	public boolean isInternal(Position<E> v) throws Exception;
+	public boolean isInternal(TreeNode<E> v) throws Exception;
 	
 	// Returns whether the given node is external or not
-	public boolean isExternal(Position<E> v);
+	public boolean isExternal(TreeNode<E> v);
 	
 	// Returns whether the node is the root node or not
-	public boolean isRoot(Position<E> v) throws Exception;
+	public boolean isRoot(TreeNode<E> v) throws Exception;
 
-	public Position<E> left(Position<E> v) throws Exception;
+	public TreeNode<E> left(TreeNode<E> v) throws Exception;
 	
 }

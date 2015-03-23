@@ -1,24 +1,26 @@
 package BinaryTrees.interfaces;
 
+import BinaryTrees.TreeNode;
+
 public interface TreePosition<E> extends Position<E> {
 	
 	// Set the left child
-	public void setLeft(TreePosition<E> v);
+	public void setLeft(TreeNode<E> v);
 	
 	// Get the left child
-	public TreePosition<E> getLeft();
+	public TreeNode<E> getLeft();
 	
 	// Set the right child
-	public void setRight(TreePosition<E> v);
+	public void setRight(TreeNode<E> v);
 	
 	// Get the right child
-	public TreePosition<E> getRight();
+	public TreeNode<E> getRight();
 	
 	// Set the parent node
-	public void setParent(TreePosition<E> v);
+	public void setParent(TreeNode<E> v);
 	
 	// Get the parent node
-	public TreePosition<E> getParent();
+	public TreeNode<E> getParent();
 
 	@Override
 	public void setElement(E element);
